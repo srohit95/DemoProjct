@@ -81,12 +81,12 @@
 
         </LinearLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/addCart"
-            android:text="Add To Cart"/>
+            android:text="view"/>
 
 
     </LinearLayout>

@@ -121,5 +121,3 @@ class HomeScreenViewModel: ViewModel() {
 
 
 }
-
-
