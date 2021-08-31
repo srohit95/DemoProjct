@@ -2,31 +2,29 @@ package com.example.mainproject1.homescreen
 
 
 import android.app.AlertDialog
-import android.app.Dialog
-import android.app.SearchManager
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.view.Window
-import android.widget.Button
 import android.widget.SearchView
 
 
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mainproject1.ProductDetailView
 import com.example.mainproject1.R
 import com.example.mainproject1.adapters.ProductListAdapter
+import com.example.mainproject1.interfaces.onItemClickListener
 import com.example.mainproject1.databinding.ActivityHomeScreenBinding
-import com.example.mainproject1.databinding.FilterDialogBinding
+
 import com.example.mainproject1.models.Products
 
-class HomeScreen : AppCompatActivity() {
+//import com.example.mainproject1.databinding.FilterDialogBinding
+
+class HomeScreen : AppCompatActivity(), onItemClickListener {
 
     lateinit var bind : ActivityHomeScreenBinding
     val nosOfIndex : Int = 20
@@ -48,7 +46,7 @@ class HomeScreen : AppCompatActivity() {
 
             productInformations1  = viewModel.getJsonDataFromAsset(applicationContext,"ProductInfo.json")
             tmpProductArray.addAll(viewModel.loadDataInList(productInformations1 ,0, nosOfIndex))
-            adapter = ProductListAdapter(tmpProductArray)
+            adapter = ProductListAdapter(tmpProductArray, this)
             bind.list.adapter = adapter
 
             bind.list.addOnScrollListener(object : RecyclerView.OnScrollListener(){
@@ -107,10 +105,6 @@ class HomeScreen : AppCompatActivity() {
 
 
         return super.onCreateOptionsMenu(menu)
-    }
-
-    private fun showToast(msg: String) {
-        Toast.makeText(applicationContext, msg, Toast.LENGTH_SHORT).show()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -255,6 +249,17 @@ class HomeScreen : AppCompatActivity() {
         alertDialog.setCancelable(false)
         alertDialog.show()
 
+    }
+
+    private fun showToast(msg: String) {
+        Toast.makeText(applicationContext, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onClickPosition(position: Int, products : Products) {
+        startActivity(Intent(this, ProductDetailView::class.java))
+        val intent = Intent(this, ProductDetailView::class.java)
+        intent.putExtra("productInfo", products )
+        startActivity(intent)
     }
 
 }

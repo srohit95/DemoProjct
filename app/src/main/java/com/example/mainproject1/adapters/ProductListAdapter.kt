@@ -9,13 +9,13 @@ import android.widget.Filterable
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.mainproject1.R
 import com.example.mainproject1.databinding.ProductListTempletBinding
+import com.example.mainproject1.interfaces.onItemClickListener
 import com.example.mainproject1.models.Products
 
 //, val itemClick: (Int, Int) -> Unit
 
-class ProductListAdapter(private var productlist: ArrayList<Products>) : RecyclerView.Adapter<ProductListAdapter.ViewHolder>() ,
+class ProductListAdapter(private var productlist: ArrayList<Products>, private val onItemClickListener: onItemClickListener) : RecyclerView.Adapter<ProductListAdapter.ViewHolder>() ,
     Filterable {
 
     var productFilterList = ArrayList<Products>()
@@ -61,6 +61,11 @@ class ProductListAdapter(private var productlist: ArrayList<Products>) : Recycle
             }
         }
 
+        holder.productbind.mainLayout.setOnClickListener {
+            onItemClickListener.onClickPosition(position,products)
+        }
+
+        // this addCart is for further updates
         holder.productbind.addCart.setOnClickListener(View.OnClickListener {
 
            /* if (qty > 0) {
@@ -74,6 +79,7 @@ class ProductListAdapter(private var productlist: ArrayList<Products>) : Recycle
 
         var imgStr = "img"+position%39
         val resId: Int = holder.productbind.root.context.getResources().getIdentifier(imgStr, "drawable", holder.productbind.root.context.packageName)
+        products.image = resId.toString()
 
         Glide.with(holder.productbind.root.context)
            .load(resId)

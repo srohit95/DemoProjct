@@ -6,7 +6,7 @@ import org.junit.Test
 import org.junit.Assert.*
 import org.junit.Before
 import java.util.regex.Pattern.matches
-import android.support.test.espresso.Espresso;
+
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -14,10 +14,10 @@ import android.support.test.espresso.Espresso;
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 class ExampleUnitTest {
-   /* @Test
+    @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
-    }*/
+    }
 
 
     /*@Test

@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mainproject1">
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_foreground"
@@ -10,8 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_foreground"
         android:supportsRtl="true"
         android:theme="@style/Theme.MainProject1">
-        <activity android:name=".homescreen.HomeScreen"></activity>
-
+        <activity
+            android:name=".ProductDetailView"
+            android:exported="true"
+            android:label="@string/title_activity_product_detail_view"
+            android:theme="@style/Theme.MainProject1.NoActionBar" />
+        <activity android:name=".homescreen.HomeScreen" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

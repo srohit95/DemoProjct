@@ -18,4 +18,9 @@ class MainActivityTest{
         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
         Espresso.onView(withId(R.id.main)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
+
+
+
+
+
 }
